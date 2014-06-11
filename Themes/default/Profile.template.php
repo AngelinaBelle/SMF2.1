@@ -1251,8 +1251,10 @@ function template_edit_options()
 	global $context, $settings, $scripturl, $modSettings, $txt;
 
 	// The main header!
+		//decoy password field to thwart password save replacing username, realname, or email with saved login text (Chrome 36, Safari)
 	echo '
 		<form action="', (!empty($context['profile_custom_submit_url']) ? $context['profile_custom_submit_url'] : $scripturl . '?action=profile;area=' . $context['menu_item_selected'] . ';u=' . $context['id_member']), '" method="post" accept-charset="', $context['character_set'], '" name="creator" id="creator" enctype="multipart/form-data"', ($context['menu_item_selected'] == 'account' ? ' autocomplete="off"' : ''), '>
+		<input type="text" style="display:none" maxlength="50" /><input type="password" style="display:none" maxlength="50"/>
 			<div class="cat_bar">
 				<h3 class="catbg">
 					<img src="', $settings['images_url'], '/icons/profile_hd.png" alt="" class="icon">';
