@@ -144,13 +144,35 @@ function template_control_richedit_buttons($editor_id)
 		<span class="smalltext">
 			', $context['shortcuts_text'], '
 		</span>';
+
+	if (!empty($context['drafts_pm_save']))
+	{
+		// The PM draft save button
+		echo '
+		<input type="submit" name="save_draft" value="', $txt['draft_save'], '" tabindex="', $context['tabindex']++, '" onclick="submitThisOnce(this);" accesskey="d" class="button_submit">
+		<input type="hidden" id="id_pm_draft" name="id_pm_draft" value="', empty($context['id_pm_draft']) ? 0 : $context['id_pm_draft'], '">';
+	}		
 	if (!empty($context['drafts_save']))
 	{
 		// Show the save draft button
 		echo '
 		<input type="submit" name="save_draft" value="', $txt['draft_save'], '" tabindex="', $context['tabindex']++, '" onclick="return confirm(' . JavaScriptEscape($txt['draft_save_note']) . ') && submitThisOnce(this);" accesskey="d" class="button_submit">
 		<input type="hidden" id="id_draft" name="id_draft" value="', empty($context['id_draft']) ? 0 : $context['id_draft'], '">';
+	}		
 
+	if ($editor_context['preview_type'])
+		echo '
+		<input type="submit" name="preview" value="', isset($editor_context['labels']['preview_button']) ? $editor_context['labels']['preview_button'] : $txt['preview'], '" tabindex="', $context['tabindex']++, '" onclick="', $editor_context['preview_type'] == 2 ? 'return event.ctrlKey || previewPost();' : 'return submitThisOnce(this);', '" accesskey="p" class="button_submit">';
+
+
+	echo '
+		<input type="submit" value="', isset($editor_context['labels']['post_button']) ? $editor_context['labels']['post_button'] : $txt['post'], '" tabindex="', $context['tabindex']++, '" onclick="return submitThisOnce(this);" accesskey="s" class="button_submit">';
+
+	if ($context['show_spellchecking'])
+		echo '
+		<input type="button" value="', $txt['spell_check'], '" tabindex="', $context['tabindex']++, '" onclick="oEditorHandle_', $editor_id, '.spellCheckStart();" class="button_submit">';
+	if (!empty($context['drafts_save']))
+	{
 		// Start an instance of the auto saver if its enabled
 		if (!empty($context['drafts_autosave']) && !empty($options['drafts_autosave_enabled']))
 			echo '
@@ -172,25 +194,12 @@ function template_control_richedit_buttons($editor_id)
 			});
 		// ]]></script>';
 	}
-	if ($context['show_spellchecking'])
-		echo '
-		<input type="button" value="', $txt['spell_check'], '" tabindex="', $context['tabindex']++, '" onclick="oEditorHandle_', $editor_id, '.spellCheckStart();" class="button_submit">';
-	if ($editor_context['preview_type'])
-		echo '
-		<input type="submit" name="preview" value="', isset($editor_context['labels']['preview_button']) ? $editor_context['labels']['preview_button'] : $txt['preview'], '" tabindex="', $context['tabindex']++, '" onclick="', $editor_context['preview_type'] == 2 ? 'return event.ctrlKey || previewPost();' : 'return submitThisOnce(this);', '" accesskey="p" class="button_submit">';
-	echo '	
-		<input type="submit" value="', isset($editor_context['labels']['post_button']) ? $editor_context['labels']['post_button'] : $txt['post'], '" tabindex="', $context['tabindex']++, '" onclick="return submitThisOnce(this);" accesskey="s" class="button_submit">';
-
 	if (!empty($context['drafts_pm_save']))
 	{
-		// The PM draft save button
-		echo '
-		<input type="submit" name="save_draft" value="', $txt['draft_save'], '" tabindex="', $context['tabindex']++, '" onclick="submitThisOnce(this);" accesskey="d" class="button_submit">
-		<input type="hidden" id="id_pm_draft" name="id_pm_draft" value="', empty($context['id_pm_draft']) ? 0 : $context['id_pm_draft'], '">';
-
 		// Load in the PM autosaver if its enabled and the user wants to use it
 		if (!empty($context['drafts_autosave']) && !empty($options['drafts_autosave_enabled']))
 			echo '
+		<br>
 		<span class="righttext padding" style="display: block">
 			<span id="throbber" style="display:none"><img src="' . $settings['images_url'] . '/loading_sm.gif" alt="" class="centericon">&nbsp;</span>
 			<span id="draft_lastautosave" ></span>
@@ -209,6 +218,7 @@ function template_control_richedit_buttons($editor_id)
 			});
 		// ]]></script>';
 	}
+
 }
 
 // What's this, verification?!
