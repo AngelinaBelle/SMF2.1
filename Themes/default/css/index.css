@@ -1,23 +1,14 @@
 /* Styles for the general looks for the Curve2 theme.
 ----------------------------------------------------- */
 
-/* Normal, standard links. */
-a:link, a:visited {
+/* This is about links */
+a:link, a:visited, a.new_win:link, a.new_win:visited {
 	color: #346;
 	text-decoration: none;
 }
-a:hover {
+a:hover, a.new_win:hover {
 	text-decoration: underline;
 	cursor: pointer;
-}
-
-/* Links that open in a new window. */
-a.new_win:link, a.new_win:visited {
-	color: #346;
-	text-decoration: none;
-}
-a.new_win:hover {
-	text-decoration: underline;
 }
 
 html {
@@ -143,7 +134,7 @@ input:focus, textarea:focus, button:focus, select:focus, textarea.editor:focus {
 	margin-left: inherit;
 }
 .button_submit, .button_reset, .button_link {
-	margin: 0 0 0 12px;
+	margin: 0 12px 0 12px;
 	padding: 2px 4px;
 	float: right;
 	cursor: pointer;
@@ -152,8 +143,18 @@ input:focus, textarea:focus, button:focus, select:focus, textarea.editor:focus {
 	border-bottom: 1px solid #aaa;
 	border-radius: 3px;
 	box-shadow: 1px 1px 1px rgba(0,0,0,0.1);
-	background: -webkit-linear-gradient(bottom, #E2E9F3 1%, #FFFFFF 70%);
-	background: linear-gradient(to top, #E2E9F3 1%, #FFFFFF 70%);
+	background-image: -webkit-gradient(
+		linear,
+		left top,
+		left bottom,
+		color-stop(0, #E2E9F3),
+		color-stop(0.7, #FFFFFF)
+	);
+	background-image: -o-linear-gradient(bottom, #E2E9F3 0%, #FFFFFF 70%);
+	background-image: -moz-linear-gradient(bottom, #E2E9F3 0%, #FFFFFF 70%);
+	background-image: -webkit-linear-gradient(bottom, #E2E9F3 0%, #FFFFFF 70%);
+	background-image: -ms-linear-gradient(bottom, #E2E9F3 0%, #FFFFFF 70%);
+	background-image: linear-gradient(to bottom, #E2E9F3 0%, #FFFFFF 70%);
 }
 .button_submit:hover, .button_reset:hover, .button_link:hover {
 	color: #af6700;
@@ -161,8 +162,18 @@ input:focus, textarea:focus, button:focus, select:focus, textarea.editor:focus {
 	border-left: 1px solid #bbb;
 	border-top: 1px solid #aaa;
 	box-shadow: -1px -1px 2px rgba(0,0,0,0.07), -1px -2px 4px rgba(255,255,255,0.33) inset;
-	background: -webkit-linear-gradient(bottom, #FFFFFF 1%, #E2E9F3 70%);
-	background: linear-gradient(to top, #FFFFFF 1%, #E2E9F3 70%);
+	background-image: -webkit-gradient(
+		linear,
+		left top,
+		left bottom,
+		color-stop(0, #FFFFFF),
+		color-stop(0.7, #E2E9F3)
+	);
+	background-image: -o-linear-gradient(bottom, #FFFFFF 0%, #E2E9F3 70%);
+	background-image: -moz-linear-gradient(bottom, #FFFFFF 0%, #E2E9F3 70%);
+	background-image: -webkit-linear-gradient(bottom, #FFFFFF 0%, #E2E9F3 70%);
+	background-image: -ms-linear-gradient(bottom, #FFFFFF 0%, #E2E9F3 70%);
+	background-image: linear-gradient(to bottom, #FFFFFF 0%, #E2E9F3 70%);
 }
 a.button_link {
 	color: #000;
@@ -238,9 +249,6 @@ fieldset legend {
 	box-shadow: none;
 	border: none;
 }
-.content fieldset {
-	border: double #ccc;
-}
 
 /* Define strong as bold, and em as italics */
 /* Note: in some particular places, strong has been redefined as font-weight: 600; */
@@ -275,9 +283,6 @@ em {
 }
 .flow_hidden {
 	overflow: hidden;
-}
-.flow_hidden .windowbg, .flow_hidden .windowbg2 {
-	/*margin-top: 2px;*/
 }
 .clear {
 	clear: both;
@@ -332,9 +337,6 @@ h3.largetext {
 	float: left;
 	display: inline-block;
 	padding: 0 3px;
-}
-#statistics .windowbg2 {
-	background: none;
 }
 
 /* Some BBC related styles.
@@ -500,49 +502,11 @@ a img {
 	color: #222 !important;
 }
 
-/* Generic, mostly color-related, classes.
-------------------------------------------------------- */
-.catbg, tr.catbg td, tr.catbg th {
-	color: #fff;
-	font-size: 1.1em;
-	font-weight: bold;
-	background: -webkit-linear-gradient(bottom, #FFFFFF 1%, #E2E9F3 70%);
-	background: linear-gradient(to top, #FFFFFF 1%, #E2E9F3 70%);
-}
-
-/* adjust the table versions of headers */
-tr.catbg th, td.catbg {
-	padding: 0 6px;
-}
-tr.catbg th a:link, tr.catbg th a:visited {
-	color: #fff;
-}
-.catbg select {
-	height: 2em;
-	font-size: 0.9em;
-	padding: 0;
-}
-
 /* Alternating backgrounds for posts, and several other sections of the forum. */
-.windowbg, #preview_body {
-	color: #222;
-	background: #f0f4f7;
-}
-.windowbg2 {
-	color: #222;
-	background: #f0f4f7;
-}
+/* @todo kill this */
 .windowbg3 {
 	color: #222;
 	background: #cacdd3;
-}
-
-/* General code for generic divs. Should make them behave. */
-div.windowbg, div.windowbg2 {
-	border-radius: 5px;
-	overflow: auto;
-	padding: 10px 0;
-	-moz-box-sizing: border-box; -webkit-box-sizing: border-box; box-sizing: border-box;
 }
 
 /* the page navigation area */
@@ -614,8 +578,18 @@ div.pagesection div.floatright input, div.pagesection div.floatright select {
 	padding: 2px 7px 1px 7px;
 	margin: 5px 8px 0 0;
 	color: #222;
-	background: -webkit-linear-gradient(bottom, #E2E9F3 1%, #FFFFFF 70%);
-	background: linear-gradient(to top, #E2E9F3 1%, #FFFFFF 70%);
+	background-image: -webkit-gradient(
+		linear,
+		left top,
+		left bottom,
+		color-stop(0, #E2E9F3),
+		color-stop(0.7, #FFFFFF)
+	);
+	background-image: -o-linear-gradient(bottom, #E2E9F3 0%, #FFFFFF 70%);
+	background-image: -moz-linear-gradient(bottom, #E2E9F3 0%, #FFFFFF 70%);
+	background-image: -webkit-linear-gradient(bottom, #E2E9F3 0%, #FFFFFF 70%);
+	background-image: -ms-linear-gradient(bottom, #E2E9F3 0%, #FFFFFF 70%);
+	background-image: linear-gradient(to bottom, #E2E9F3 0%, #FFFFFF 70%);
 }
 .topbottom:hover {
 	text-decoration: none;
@@ -625,44 +599,18 @@ div.pagesection div.floatright input, div.pagesection div.floatright select {
 	border-left: 1px solid #bbb;
 	border-top: 1px solid #aaa;
 	box-shadow: -1px -1px 2px rgba(0,0,0,0.07), -1px -2px 4px rgba(255,255,255,0.33) inset;
-	background: -webkit-linear-gradient(bottom, #FFFFFF 1%, #E2E9F3 70%);
-	background: linear-gradient(to top, #FFFFFF 1%, #E2E9F3 70%);
-}
-
-/* Nobody wants locked topics to stand out much. */
-.windowbg.locked {
-	background: #e7eaef;
-}
-.windowbg2.locked {
-	background: #e7eaef;
-}
-/* Sticky topics get a different background */
-.windowbg.sticky {
-	background: #cfdce8;
-}
-.windowbg2.sticky {
-	background: #cfdce8;
-}
-/* Locked AND sticky are a bit more technical */
-.windowbg.sticky.locked {
-	background: #e8d8cf;
-}
-.windowbg2.sticky.locked {
-	background: #e8d8cf;
-}
-/* Awaiting approval is a bit special, topics first */
-.windowbg.approvetopic {
-	background: #e4a17c;
-}
-.windowbg2.approvetopic {
-	background: #e4a17c;
-}
-/* Unapproved posts in approved topics */
-.windowbg.approvepost {
-	background: #ffeaea;
-}
-.windowbg2.approvepost {
-	background: #ffeaea;
+	background-image: -webkit-gradient(
+		linear,
+		left top,
+		left bottom,
+		color-stop(0, #FFFFFF),
+		color-stop(0.7, #E2E9F3)
+	);
+	background-image: -o-linear-gradient(bottom, #FFFFFF 0%, #E2E9F3 70%);
+	background-image: -moz-linear-gradient(bottom, #FFFFFF 0%, #E2E9F3 70%);
+	background-image: -webkit-linear-gradient(bottom, #FFFFFF 0%, #E2E9F3 70%);
+	background-image: -ms-linear-gradient(bottom, #FFFFFF 0%, #E2E9F3 70%);
+	background-image: linear-gradient(to bottom, #FFFFFF 0%, #E2E9F3 70%);
 }
 
 /* Posts and personal messages displayed throughout the forum. */
@@ -812,7 +760,7 @@ dl.settings {
 	clear: right;
 	overflow: auto;
 	margin: 0 0 10px 0;
-	padding: 0;
+	padding: 5px;
 }
 dl.settings dt {
 	width: 40%;
@@ -887,6 +835,7 @@ h4.catbg a.toggle img {
 	margin: 0 5px 0 5px;
 }
 h4.catbg, h3.catbg {
+	color: #FFF;
 	background: none;
 }
 
@@ -919,10 +868,6 @@ div.cat_bar {
 	margin: 2px 2px 0 2px;
 }
 
-.table_grid th.lefttext {
-	padding: 0 8px;
-}
-
 /* a general table class */
 table.table_grid {
 	border-collapse: collapse;
@@ -931,6 +876,9 @@ table.table_grid {
 }
 table.table_grid td {
 	padding: 3px;
+}
+.title_bar th {
+	padding: 4px 3px 3px 8px;
 }
 
 /* GenericList */
@@ -957,11 +905,12 @@ img.sort, .sort {
 ----------------------------------------------------------- */ /* @todo */
 .roundframe {
 	-moz-box-sizing: border-box; -webkit-box-sizing: border-box; box-sizing: border-box;
-	margin: 2px 0 0 0;
+	margin: 10px 0 0 0;
 	padding: 9px;
-	background: #f5f5f5;
+	background: #F8F8F8;
 	border: 1px solid #c5c5c5;
 	border-radius: 7px;
+	box-shadow: 0 -2px 2px rgba(0,0,0,0.1);
 	overflow: hidden;
 }
 .roundframe dl, .roundframe dt, .roundframe p {
@@ -977,17 +926,6 @@ img.sort, .sort {
 	border-top: 0;
 	border-top-left-radius: 0;
 	border-top-right-radius: 0;
-}
-
-/* The main content area.
-------------------------------------------------------- */
-.content {
-	padding: 6px 15px;
-	margin: 0;
-	border: none;
-}
-.content p {
-	margin: 0 0 6px 0;
 }
 
 /* Styles used by the auto suggest control.
@@ -1063,7 +1001,7 @@ img.sort, .sort {
 }
 .dropmenu li a, #top_info > li > a {
 	padding: 0 7px 0 7px;
-	margin: 0 0 0 0;
+	margin: 0;
 	display: block;
 	border: 1px solid transparent;
 	border-radius: 4px;
@@ -1198,8 +1136,18 @@ img.sort, .sort {
 	border-radius: 4px;
 	box-shadow: 3px 3px 4px rgba(0,0,0,0.3);
 	background: #FFFFFF;
-	background: -webkit-linear-gradient(bottom, #E2E9F3 1%, #FFFFFF 70%);
-	background: linear-gradient(to top, #E2E9F3 1%, #FFFFFF 70%);
+	background-image: -webkit-gradient(
+		linear,
+		left top,
+		left bottom,
+		color-stop(0, #E2E9F3),
+		color-stop(0.7, #FFFFFF)
+	);
+	background-image: -o-linear-gradient(bottom, #E2E9F3 0%, #FFFFFF 70%);
+	background-image: -moz-linear-gradient(bottom, #E2E9F3 0%, #FFFFFF 70%);
+	background-image: -webkit-linear-gradient(bottom, #E2E9F3 0%, #FFFFFF 70%);
+	background-image: -ms-linear-gradient(bottom, #E2E9F3 0%, #FFFFFF 70%);
+	background-image: linear-gradient(to bottom, #E2E9F3 0%, #FFFFFF 70%);
 }
 /* Level 2 link background. */
 .dropmenu li li {
@@ -1259,16 +1207,36 @@ img.sort, .sort {
 /* Levels 2 and 3 hover effects. */
 .dropmenu li li:hover {
 	border: none;
-	background: -webkit-linear-gradient(bottom, #E2E9F3 1%, #FFFFFF 70%);
-	background: linear-gradient(to top, #E2E9F3 1%, #FFFFFF 70%);
+	background-image: -webkit-gradient(
+		linear,
+		left top,
+		left bottom,
+		color-stop(0, #E2E9F3),
+		color-stop(0.7, #FFFFFF)
+	);
+	background-image: -o-linear-gradient(bottom, #E2E9F3 0%, #FFFFFF 70%);
+	background-image: -moz-linear-gradient(bottom, #E2E9F3 0%, #FFFFFF 70%);
+	background-image: -webkit-linear-gradient(bottom, #E2E9F3 0%, #FFFFFF 70%);
+	background-image: -ms-linear-gradient(bottom, #E2E9F3 0%, #FFFFFF 70%);
+	background-image: linear-gradient(to bottom, #E2E9F3 0%, #FFFFFF 70%);
 }
 .dropmenu li li:hover>a, .dropmenu li li a:focus, .dropmenu li li a:hover {
 	color: #333;
 	text-decoration: none;
 	border: 1px solid #cfcfcf;
 	border-top: 1px solid #d4dee6;
-	background: -webkit-linear-gradient(bottom, #E2E9F3 1%, #FFFFFF 70%);
-	background: linear-gradient(to top, #E2E9F3 1%, #FFFFFF 70%);
+	background-image: -webkit-gradient(
+		linear,
+		left top,
+		left bottom,
+		color-stop(0, #E2E9F3),
+		color-stop(0.7, #FFFFFF)
+	);
+	background-image: -o-linear-gradient(bottom, #E2E9F3 0%, #FFFFFF 70%);
+	background-image: -moz-linear-gradient(bottom, #E2E9F3 0%, #FFFFFF 70%);
+	background-image: -webkit-linear-gradient(bottom, #E2E9F3 0%, #FFFFFF 70%);
+	background-image: -ms-linear-gradient(bottom, #E2E9F3 0%, #FFFFFF 70%);
+	background-image: linear-gradient(to bottom, #E2E9F3 0%, #FFFFFF 70%);
 }
 /* Reposition Level 2 submenu as visible on hover. */
 .dropmenu li ul {
@@ -1329,10 +1297,20 @@ img.sort, .sort {
 	overflow: visible;
 	color: #444;
 	font-size: 0.8em;
-	background: -webkit-linear-gradient(bottom, #E2E9F3 1%, #FFFFFF 70%);
-	background: linear-gradient(to top, #E2E9F3 1%, #FFFFFF 70%);
 	height: 2.2em;
 	line-height: 2.2em;
+	background-image: -webkit-gradient(
+		linear,
+		left top,
+		left bottom,
+		color-stop(0, #E2E9F3),
+		color-stop(0.7, #FFFFFF)
+	);
+	background-image: -o-linear-gradient(bottom, #E2E9F3 0%, #FFFFFF 70%);
+	background-image: -moz-linear-gradient(bottom, #E2E9F3 0%, #FFFFFF 70%);
+	background-image: -webkit-linear-gradient(bottom, #E2E9F3 0%, #FFFFFF 70%);
+	background-image: -ms-linear-gradient(bottom, #E2E9F3 0%, #FFFFFF 70%);
+	background-image: linear-gradient(to bottom, #E2E9F3 0%, #FFFFFF 70%);
 }
 /* Keep a consistent size when wrapped in pagesection. */
 .pagesection .button {
@@ -1345,8 +1323,18 @@ img.sort, .sort {
 	border-left: 1px solid #bbb;
 	border-top: 1px solid #aaa;
 	box-shadow: -1px -1px 2px rgba(0,0,0,0.07), -1px -2px 4px rgba(255,255,255,0.33) inset;
-	background: -webkit-linear-gradient(bottom, #FFFFFF 1%, #E2E9F3 70%);
-	background: linear-gradient(to top, #FFFFFF 1%, #E2E9F3 70%);
+	background-image: -webkit-gradient(
+		linear,
+		left top,
+		left bottom,
+		color-stop(0, #FFFFFF),
+		color-stop(0.7, #E2E9F3)
+	);
+	background-image: -o-linear-gradient(bottom, #FFFFFF 0%, #E2E9F3 70%);
+	background-image: -moz-linear-gradient(bottom, #FFFFFF 0%, #E2E9F3 70%);
+	background-image: -webkit-linear-gradient(bottom, #FFFFFF 0%, #E2E9F3 70%);
+	background-image: -ms-linear-gradient(bottom, #FFFFFF 0%, #E2E9F3 70%);
+	background-image: linear-gradient(to bottom, #FFFFFF 0%, #E2E9F3 70%);
 }
 /* the active one */
 .button.active {
@@ -1395,8 +1383,19 @@ img.sort, .sort {
 	padding: 0 4px;
 	border-bottom: 1px solid #bbb;
 	box-shadow: 0 1px 4px rgba(0,0,0,0.16);
-	background: -webkit-linear-gradient(bottom, #E2E9F3 1%, #FFFFFF 70%);
-	background: linear-gradient(to top, #E2E9F3 1%, #FFFFFF 70%);
+	background: #FFFFFF;
+	background-image: -webkit-gradient(
+		linear,
+		left top,
+		left bottom,
+		color-stop(0, #E2E9F3),
+		color-stop(0.7, #FFFFFF)
+	);
+	background-image: -o-linear-gradient(bottom, #E2E9F3 0%, #FFFFFF 70%);
+	background-image: -moz-linear-gradient(bottom, #E2E9F3 0%, #FFFFFF 70%);
+	background-image: -webkit-linear-gradient(bottom, #E2E9F3 0%, #FFFFFF 70%);
+	background-image: -ms-linear-gradient(bottom, #E2E9F3 0%, #FFFFFF 70%);
+	background-image: linear-gradient(to bottom, #E2E9F3 0%, #FFFFFF 70%);
 }
 #top_section .frame{
 	clear: both;
@@ -1430,7 +1429,7 @@ img.sort, .sort {
 }
 #search_form .input_text, #search_form select, #search_form .button_submit {
 	padding: 2px;
-	margin: 0 0 0 0;
+	margin: 2px;
 	background: #fff;
 	border: 1px solid #ccc;
 	border-left: 1px solid #bbb;
@@ -1445,12 +1444,27 @@ img.sort, .sort {
 	padding: 1px 2px;
 	border-radius: 3px;
 	color: #333;
-	background: -webkit-linear-gradient(bottom, #E2E9F3 1%, #FFFFFF 70%);
-	background: linear-gradient(to top, #E2E9F3 1%, #FFFFFF 70%);
+	background-image: -webkit-gradient(
+		linear,
+		left top,
+		left bottom,
+		color-stop(0, #E2E9F3),
+		color-stop(0.7, #FFFFFF)
+	);
+	background-image: -o-linear-gradient(bottom, #E2E9F3 0%, #FFFFFF 70%);
+	background-image: -moz-linear-gradient(bottom, #E2E9F3 0%, #FFFFFF 70%);
+	background-image: -webkit-linear-gradient(bottom, #E2E9F3 0%, #FFFFFF 70%);
+	background-image: -ms-linear-gradient(bottom, #E2E9F3 0%, #FFFFFF 70%);
+	background-image: linear-gradient(to bottom, #E2E9F3 0%, #FFFFFF 70%);
 }
+/* h3 HD Icons */
 h3.search_hd {
 	background: url(../images/buttons/search_hd.png) 4px no-repeat;
 	padding: 8px 35px 6px;
+}
+h3.profile_hd {
+	background: url(../images/icons/profile_hd.png) 15px no-repeat;
+	padding: 8px 0 8px 50px;
 }
 /* @todo In practice it may be better to set a different value for Firefox and Opera only, */
 /*	just to save a little bit of code. Will wait for Opera detection on body tag. */
@@ -1461,8 +1475,18 @@ h3.search_hd {
 #search_form .button_submit:hover {
 	color: #a85400;
 	text-decoration: none;
-	background: -webkit-linear-gradient(bottom, #FFFFFF 1%, #E2E9F3 70%);
-	background: linear-gradient(to top, #FFFFFF 1%, #E2E9F3 70%);
+	background-image: -webkit-gradient(
+		linear,
+		left top,
+		left bottom,
+		color-stop(0, #FFFFFF),
+		color-stop(0.7, #E2E9F3)
+	);
+	background-image: -o-linear-gradient(bottom, #FFFFFF 0%, #E2E9F3 70%);
+	background-image: -moz-linear-gradient(bottom, #FFFFFF 0%, #E2E9F3 70%);
+	background-image: -webkit-linear-gradient(bottom, #FFFFFF 0%, #E2E9F3 70%);
+	background-image: -ms-linear-gradient(bottom, #FFFFFF 0%, #E2E9F3 70%);
+	background-image: linear-gradient(to bottom, #FFFFFF 0%, #E2E9F3 70%);
 }
 /* The logo and slogan. */
 #header {
@@ -1517,8 +1541,18 @@ img#smflogo {
 #inner_section {
 	padding: 12px 10px 2px 10px;
 	border-radius: 6px 6px 0 0;
-	background: -webkit-linear-gradient(bottom, #FFFFFF 1%, #F1F3F5 98%);
-	background: linear-gradient(to top, #FFFFFF 1%, #F1F3F5 98%);
+	background-image: -webkit-gradient(
+		linear,
+		left top,
+		left bottom,
+		color-stop(0, #E2E9F3),
+		color-stop(0.5, #FFFFFF)
+	);
+	background-image: -o-linear-gradient(bottom, #E2E9F3 0%, #FFFFFF 50%);
+	background-image: -moz-linear-gradient(bottom, #E2E9F3 0%, #FFFFFF 50%);
+	background-image: -webkit-linear-gradient(bottom, #E2E9F3 0%, #FFFFFF 50%);
+	background-image: -ms-linear-gradient(bottom, #E2E9F3 0%, #FFFFFF 50%);
+	background-image: linear-gradient(to bottom, #E2E9F3 0%, #FFFFFF 50%);
 }
 #inner_section:after {
 	content:"";
@@ -1569,7 +1603,7 @@ ul li.greeting {
 }
 #main_content_section .navigate_section {
 	margin: 4px 0 0 0;
-	padding: 0 0 0 0;
+	padding: 0;
 }
 .navigate_section ul {
 	margin: 4px 0 0 0;
@@ -1580,8 +1614,18 @@ ul li.greeting {
 	border-radius: 2px;
 	box-shadow: 0 -2px 2px rgba(0,0,0,0.08);
 	-moz-box-sizing: border-box; box-sizing: border-box; -webkit-box-sizing: border-box;
-	background: -webkit-linear-gradient(bottom, #FFFFFF 1%, #F1F3F5 96%);
-	background: linear-gradient(to top, #FFFFFF 1%, #F1F3F5 96%);
+	background-image: -webkit-gradient(
+		linear,
+		left top,
+		left bottom,
+		color-stop(0, #FFFFFF),
+		color-stop(0.95, #F1F3F5)
+	);
+	background-image: -o-linear-gradient(bottom, #FFFFFF 0%, #F1F3F5 95%);
+	background-image: -moz-linear-gradient(bottom, #FFFFFF 0%, #F1F3F5 95%);
+	background-image: -webkit-linear-gradient(bottom, #FFFFFF 0%, #F1F3F5 95%);
+	background-image: -ms-linear-gradient(bottom, #FFFFFF 0%, #F1F3F5 95%);
+	background-image: linear-gradient(to bottom, #FFFFFF 0%, #F1F3F5 95%);
 }
 .navigate_section ul li {
 	float: left;
@@ -1729,7 +1773,6 @@ ul#smfFadeScroller li {
 ---------------------------------------------------- */
 #info_center {
 	clear: both;
-	margin: 0;
 }
 #upshrinkHeaderIC {
 	margin-top: 4px;
@@ -1765,7 +1808,7 @@ ul#smfFadeScroller li {
 }
 #upshrinkHeaderIC p.inline, #upshrinkHeaderIC p.last {
 	border: none;
-	margin: 0 0 0 0;
+	margin: 0;
 	padding: 2px 29px;
 	line-height: 1.6em;
 	font-size: 0.9em;
@@ -1871,9 +1914,6 @@ select.qaction {
 #poll {
 	overflow: hidden;
 }
-#poll .content {
-	padding: 0 12px;
-}
 h4#pollquestion {
 	padding: 0 0 6px 25px;
 }
@@ -1929,7 +1969,7 @@ h4#pollquestion {
 #poll_options dl.options .percentage {
 	display: block;
 	float: right;
-	margin: 0 0 0 0;
+	margin: 0;
 	padding: 0 2px;
 	position: absolute;
 	right: 0;
@@ -1979,12 +2019,6 @@ div#pollmoderation {
 	margin: 4px 0 0 0;
 }
 /* poster and postarea + moderation area underneath */
-#forumposts .windowbg, #forumposts .windowbg2, #forumposts .approvebg, #forumposts .approvebg2 {
-	overflow: visible;
-}
-#personal_messages div.windowbg2 {
-	overflow: auto;
-}
 .post_wrapper:after {
 	content:"";
 	display: block;
@@ -2003,8 +2037,8 @@ div#pollmoderation {
 	font-size: 1.2em;
 }
 .poster h4, .poster h4 a, .poster li:hover h4 a, .poster h4 a:hover .poster li h4 a, .poster h4 a:focus {
-	margin: 0 0 0 0;
-	padding: 0 0 0 0;
+	margin: 0;
+	padding: 0;
 	color: #c06002;
 }
 
@@ -2204,8 +2238,18 @@ ul.quickbuttons li.inline_mod_check {
 	color: #222;
 	margin: 3px 19px;
 	overflow: visible;
-	background: -webkit-linear-gradient(bottom, #E2E9F3 1%, #FFFFFF 70%);
-	background: linear-gradient(to top, #E2E9F3 1%, #FFFFFF 70%);
+	background-image: -webkit-gradient(
+		linear,
+		left top,
+		left bottom,
+		color-stop(0, #E2E9F3),
+		color-stop(0.7, #FFFFFF)
+	);
+	background-image: -o-linear-gradient(bottom, #E2E9F3 0%, #FFFFFF 70%);
+	background-image: -moz-linear-gradient(bottom, #E2E9F3 0%, #FFFFFF 70%);
+	background-image: -webkit-linear-gradient(bottom, #E2E9F3 0%, #FFFFFF 70%);
+	background-image: -ms-linear-gradient(bottom, #E2E9F3 0%, #FFFFFF 70%);
+	background-image: linear-gradient(to bottom, #E2E9F3 0%, #FFFFFF 70%);
 }
 .quickbuttons li:first-child, .quickbuttons li:first-child:hover {
 	border-radius: 4px 1px 1px 4px;
@@ -2222,8 +2266,18 @@ ul.quickbuttons li.inline_mod_check {
 	border-bottom: 1px solid #aaa;
 	border-radius: 1px;
 	box-shadow: 1px 1px 1px rgba(0,0,0,0.1);
-	background: -webkit-linear-gradient(bottom, #FFFFFF 1%, #E2E9F3 70%);
-	background: linear-gradient(to top, #FFFFFF 1%, #E2E9F3 70%);
+	background-image: -webkit-gradient(
+		linear,
+		left top,
+		left bottom,
+		color-stop(0, #FFFFFF),
+		color-stop(0.7, #E2E9F3)
+	);
+	background-image: -o-linear-gradient(bottom, #FFFFFF 0%, #E2E9F3 70%);
+	background-image: -moz-linear-gradient(bottom, #FFFFFF 0%, #E2E9F3 70%);
+	background-image: -webkit-linear-gradient(bottom, #FFFFFF 0%, #E2E9F3 70%);
+	background-image: -ms-linear-gradient(bottom, #FFFFFF 0%, #E2E9F3 70%);
+	background-image: linear-gradient(to bottom, #FFFFFF 0%, #E2E9F3 70%);
 }
 .quickbuttons li.quick_edit, .quickbuttons li.post_options {
 	line-height: 1.9em;
@@ -2251,8 +2305,18 @@ ul.quickbuttons li.inline_mod_check {
 	border-top: solid 1px #bbb;
 	border-radius: 4px 2px 4px 0;
 	box-shadow: 2px 3px 3px rgba(0,0,0,0.2);
-	background: -webkit-linear-gradient(bottom, #E2E9F3 1%, #FFFFFF 70%);
-	background: linear-gradient(to top, #E2E9F3 1%, #FFFFFF 70%);
+	background-image: -webkit-gradient(
+		linear,
+		left top,
+		left bottom,
+		color-stop(0, #E2E9F3),
+		color-stop(0.7, #FFFFFF)
+	);
+	background-image: -o-linear-gradient(bottom, #E2E9F3 0%, #FFFFFF 70%);
+	background-image: -moz-linear-gradient(bottom, #E2E9F3 0%, #FFFFFF 70%);
+	background-image: -webkit-linear-gradient(bottom, #E2E9F3 0%, #FFFFFF 70%);
+	background-image: -ms-linear-gradient(bottom, #E2E9F3 0%, #FFFFFF 70%);
+	background-image: linear-gradient(to bottom, #E2E9F3 0%, #FFFFFF 70%);
 }
 .quickbuttons li ul {
 	display: none;
@@ -2274,8 +2338,18 @@ ul.quickbuttons li.inline_mod_check {
 	border: 1px solid #cfcfcf;
 	border-top: 1px solid #d4dee6;
 	border-bottom: 1px solid #cbdae6;
-	background: -webkit-linear-gradient(bottom, #E2E9F3 1%, #FFFFFF 70%);
-	background: linear-gradient(to top, #E2E9F3 1%, #FFFFFF 70%);
+	background-image: -webkit-gradient(
+		linear,
+		left top,
+		left bottom,
+		color-stop(0, #E2E9F3),
+		color-stop(0.7, #FFFFFF)
+	);
+	background-image: -o-linear-gradient(bottom, #E2E9F3 0%, #FFFFFF 70%);
+	background-image: -moz-linear-gradient(bottom, #E2E9F3 0%, #FFFFFF 70%);
+	background-image: -webkit-linear-gradient(bottom, #E2E9F3 0%, #FFFFFF 70%);
+	background-image: -ms-linear-gradient(bottom, #E2E9F3 0%, #FFFFFF 70%);
+	background-image: linear-gradient(to bottom, #E2E9F3 0%, #FFFFFF 70%);
 }
 .quickbuttons ul li a, .quickbuttons ul li a:focus {
 	padding: 0 6px 0 26px;
@@ -2291,8 +2365,18 @@ ul.quickbuttons li > ul > li {
 /* Note: The next declarations are for keyboard access with js disabled. */
 .quickbuttons ul li a:focus {
 	margin: 0 -9910px 0 9910px;
-	background: -webkit-linear-gradient(bottom, #E2E9F3 1%, #FFFFFF 70%);
-	background: linear-gradient(to top, #E2E9F3 1%, #FFFFFF 70%);
+	background-image: -webkit-gradient(
+		linear,
+		left top,
+		left bottom,
+		color-stop(0, #E2E9F3),
+		color-stop(0.7, #FFFFFF)
+	);
+	background-image: -o-linear-gradient(bottom, #E2E9F3 0%, #FFFFFF 70%);
+	background-image: -moz-linear-gradient(bottom, #E2E9F3 0%, #FFFFFF 70%);
+	background-image: -webkit-linear-gradient(bottom, #E2E9F3 0%, #FFFFFF 70%);
+	background-image: -ms-linear-gradient(bottom, #E2E9F3 0%, #FFFFFF 70%);
+	background-image: linear-gradient(to bottom, #E2E9F3 0%, #FFFFFF 70%);
 }
 /* Cancel for hover and/or js access. */
 .quickbuttons ul li:hover a:focus, .quickbuttons ul li a:focus {
@@ -2337,10 +2421,8 @@ ul.quickbuttons li > ul > li {
 	clear: both;
 }
 #quickReplyOptions .roundframe {
-	background: #f0f4f7;
 	margin: 8px 0 0 0;
 	padding: 8px 10% 12px 10%;
-	box-shadow: 0 -2px 2px rgba(0,0,0,0.1);
 	overflow: auto;
 }
 #quickReplyOptions form textarea {
@@ -2354,6 +2436,7 @@ ul.quickbuttons li > ul > li {
 ---------------------------------------------------- */
 form#postmodify .roundframe {
 	padding: 12px 12%;
+	margin: 12px 0 0 0;
 }
 #post_header {
 	padding: 6px;
@@ -2769,9 +2852,9 @@ tr.windowbg td, tr.windowbg2 td, tr.highlight2 td, .table_grid tr td {
 	padding: 4px 8px;
 }
 #credits p {
-	padding: 0;
 	font-style: italic;
 	margin: 0;
+	padding: 0;
 }
 
 /* Styles for generic tables.
@@ -2989,9 +3072,6 @@ dl {
 	width: 20%;
 	float: left;
 }
-#basicinfo .windowbg .content {
-	padding-left: 20px;
-}
 #detailedinfo {
 	width: 79.5%;
 	float: right;
@@ -3073,7 +3153,7 @@ dl {
 	margin: 6px 0;
 }
 .activity_stats {
-	margin: 0;
+	margin: 10px;
 	padding: 0;
 }
 .activity_stats li {
@@ -3112,21 +3192,6 @@ dl {
 	left: -1000em;
 }
 
-#profileview div.content dt {
-	width: 35%;
-	float: left;
-	margin: 0 0 3px 0;
-	padding: 0;
-	font-weight: bold;
-	clear: both;
-}
-#profileview div.content dd {
-	width: 65%;
-	float: left;
-	margin: 0 0 3px 0;
-	padding: 0;
-}
-
 .profile_pie {
 	background: url(../images/stats_pie.png);
 	float: left;
@@ -3142,7 +3207,7 @@ dl {
 	float: right;
 }
 .counter {
-	margin: 0 0 0 0;
+	margin: 0;
 	padding: 5px 6px 1px 2px;
 	font-size: 2.2em;
 	font-weight: bold;
@@ -3150,7 +3215,6 @@ dl {
 	float: left;
 }
 .topic_details {
-	border-bottom: 1px solid #999;
 	padding: 0 4px 4px 4px;
 }
 .list_posts {
@@ -3176,15 +3240,6 @@ dl {
 	margin-right: 12px;
 }
 
-#tracking div.content dl {
-	border-bottom: 0;
-	margin: 0;
-	padding: 0;
-}
-
-#creator dl {
-	margin: 0;
-}
 #creator dt {
 	width: 40%;
 	float: left;
@@ -3270,9 +3325,6 @@ dl {
 
 /* Styles for the statistics center.
 ------------------------------------------------- */
-#statistics  div {
-	-moz-box-sizing: border-box; -webkit-box-sizing: border-box; box-sizing: border-box;
-}
 .stats_icon {
 	width: 16px;
 	height: 16px;
@@ -3298,12 +3350,6 @@ dl {
 .stats_icon.starters, .stats_icon.people {
 	background-position: -80px -48px;
 }
-dl.stats {
-	clear: both;
-	overflow: hidden;
-	margin: 0 0 0 0;
-	padding: 0 0 0 0;
-}
 dl.stats dt {
 	width: 50%;
 	float: left;
@@ -3314,10 +3360,9 @@ dl.stats dt {
 	font-size: 1em;
 }
 dl.stats dd {
-	text-align: right;
 	width: 50%;
 	font-size: 1em;
-	float: right;
+	float: left;
 	margin: 0 0 4px 0;
 	padding: 0 4px 0 0;
 	line-height: 1.4em;
@@ -3341,6 +3386,13 @@ dl.stats dd {
 	width: 0;
 	border-right: none;
 }
+#profileview dd, .nobb, .nobb dd {
+	background: none !important;
+	border: none !important;
+}
+dl.stats {
+	padding: 5px;
+}
 /* Absolute positioning stops these breaking the bars on narrow screens. */
 dl.stats dd span {
 	padding: 0 2px;
@@ -3351,38 +3403,8 @@ dl.stats dd span {
 	background: #fff;
 	white-space: pre;
 }
-/* Special styling for the top two blocks. */
-.stats_left {
-	float: left;
-	margin-top: 8px;
-	padding: 6px 15px;
-	border-right: 1px solid #bbb;
-}
-.stats_right{
-	float: right;
-	padding: 6px 15px;
-	margin-top: 8px;
-}
-.stats_left dl.stats, .stats_right dl.stats {
-	margin: -8px 0 -12px 0;
-}
-.stats_left dt a {
-	color: #232f46;
-}
-.stats_left dt {
-	width: 35%;
-}
-.stats_left dd {
-	width: 65%;
-}
-.top_row dl.stats dd {
-	background: none;
-	border: none;
-}
+
 /* Forum history table. */
-#stats {
-	margin: 4px 0;
-}
 #stats td, #stats th {
 	width: 15%;
 	padding: 4px;
@@ -3547,7 +3569,7 @@ dl.addrules dt.floatleft {
 ------------------------------------------------- */
 
 #help_container {
-	margin: 0 0 0 0;
+	margin: 0;
 	padding: 0 0 8px 0;
 	overflow: auto;
 }
@@ -3628,8 +3650,18 @@ dl.addrules dt.floatleft {
 	border-radius: 7px 7px 3px 3px;
 	max-height: none!important; /* Is this declaration necessary? None is the default anyway. */
 	overflow: visible!important;
-	background: -webkit-linear-gradient(bottom, #E2E9F3 1%, #FFFFFF 70%);
-	background: linear-gradient(to top, #E2E9F3 1%, #FFFFFF 70%);
+	background-image: -webkit-gradient(
+		linear,
+		left top,
+		left bottom,
+		color-stop(0, #E2E9F3),
+		color-stop(0.7, #FFFFFF)
+	);
+	background-image: -o-linear-gradient(bottom, #E2E9F3 0%, #FFFFFF 70%);
+	background-image: -moz-linear-gradient(bottom, #E2E9F3 0%, #FFFFFF 70%);
+	background-image: -webkit-linear-gradient(bottom, #E2E9F3 0%, #FFFFFF 70%);
+	background-image: -ms-linear-gradient(bottom, #E2E9F3 0%, #FFFFFF 70%);
+	background-image: linear-gradient(to bottom, #E2E9F3 0%, #FFFFFF 70%);
 }
 .popup_heading
 {
@@ -3653,8 +3685,18 @@ dl.addrules dt.floatleft {
 	border-bottom: 1px solid #ccc;
 	border-radius: 6px 6px 2px 2px;
 	box-shadow: 0 -2px 3px rgba(0,0,0,0.15), 0 1px 1px rgba(255,255,255,0.2);
-	background: -webkit-linear-gradient(bottom, #FFFFFF 1%, #F1F3F5 96%);
-	background: linear-gradient(to top, #FFFFFF 1%, #F1F3F5 96%);
+	background-image: -webkit-gradient(
+		linear,
+		left top,
+		left bottom,
+		color-stop(0, #FFFFFF),
+		color-stop(0.95, #F1F3F5)
+	);
+	background-image: -o-linear-gradient(bottom, #FFFFFF 0%, #F1F3F5 95%);
+	background-image: -moz-linear-gradient(bottom, #FFFFFF 0%, #F1F3F5 95%);
+	background-image: -webkit-linear-gradient(bottom, #FFFFFF 0%, #F1F3F5 95%);
+	background-image: -ms-linear-gradient(bottom, #FFFFFF 0%, #F1F3F5 95%);
+	background-image: linear-gradient(to bottom, #FFFFFF 0%, #F1F3F5 95%);
 }
 .popup_heading .hide_popup
 {
@@ -3710,46 +3752,54 @@ dl.addrules dt.floatleft {
 	z-index: 1;
 }
 
-/* General @todo stuff follows. Just added here temporarily, for convenience while trying stuff out. */
-/* Forum posts may require some special treatment for dealing with clearing floated content. */
-/* Suspect it will be necessary to use float: left; width: 100%; on the windowbg and windowbg2 divs. */
+#preview_body {
+	color: #222;
+	background: #f0f4f7;
+}
 
-#forumposts .windowbg, #forumposts .windowbg2, #forumposts .approvebg, #forumposts .approvebg2, #personal_messages .windowbg, #personal_messages .windowbg2 {
-	background: /*#e8eff5;*/#f0f4f7;
-	margin: 12px 0 0 0;
-	padding: 8px 8px 16px 8px;
-	border: 1px solid #ccc;
-	border-radius: 5px;
-	box-shadow: 0 -2px 2px rgba(0,0,0,0.1);
-}
-#forumposts .windowbg2, #personal_messages .windowbg2 {
-	background: #eaf1f4;
-}
-/* The generic wrapper thingy for teh awesome cool looks innit. */
-/* This lot will be simplified once I get all the styling hooks in place. */
-.generic_list_wrapper, .action_profile  #permissions, #postmodify .roundframe, .add_buddy, #creator .windowbg2,
-#notify_options .windowbg2, #info_center, #profileview, #messageindex, #mlist,
-.core_posts, #recent .core_posts, #recent .topic_table, #searchform .roundframe {
+.generic_list_wrapper, .action_profile  #permissions,
+#profileview, #messageindex, #recent .core_posts, #recent .topic_table,
+.windowbg, .windowbg2, #forumposts .approvebg, #forumposts .approvebg2 {
 	background: #f0f4f7;
 	margin: 12px 0 0 0;
-	padding: 8px 8px 16px 8px;
+	padding: 12px 16px;
 	border: 1px solid #ccc;
-	border-radius: 7px;
+	border-radius: 6px;
 	box-shadow: 0 -2px 2px rgba(0,0,0,0.1);
 	overflow: auto;
 	-moz-box-sizing: border-box; box-sizing: border-box; -webkit-box-sizing: border-box;
 }
+/* Special treatment for #forumposts area */
+#forumposts .windowbg, #forumposts .windowbg2, #forumposts .approvebg, #forumposts .approvebg2 {
+	overflow: visible;
+}
+/* Nobody wants locked topics to stand out much. */
+.windowbg.locked, .windowbg2.locked {
+	background: #e7eaef;
+}
+/* Sticky topics get a different background */
+.windowbg.sticky, .windowbg2.sticky {
+	background: #cfdce8;
+}
+/* Locked AND sticky are a bit more technical */
+.windowbg.sticky.locked, .windowbg2.sticky.locked {
+	background: #e8d8cf;
+}
+/* Awaiting approval is a bit special, topics first */
+.windowbg.approvetopic, .windowbg2.approvetopic {
+	background: #e4a17c;
+}
+/* Unapproved posts in approved topics */
+.windowbg.approvepost, .windowbg2.approvepost {
+	background: #ffeaea;
+}
 .generic_list_wrapper .additional_row {
 	margin: 0;
 	padding: 5px 0;
-	/*border-top: 1px solid #aaa;*/
 	border-radius: 0;
 }
 .generic_list_wrapper table.table_grid {
 	border-bottom: 1px solid #aaa;
-}
-.table_grid .catbg, .table_grid .catbg th, .table_grid .catbg th a {
-	font-size: 1em;
 }
 .generic_list_wrapper .information .additional_row{
 	border: none;
@@ -3762,23 +3812,9 @@ dl.addrules dt.floatleft {
 	border-bottom: 1px solid #fff;
 }
 #searchform .roundframe {
-	background: #f0f4f7;
 	margin: 8px 0 0 0;
 	padding: 32px;
-	border: 1px solid #ccc;
-	border-radius: 7px;
-	box-shadow: 0 -2px 2px rgba(0,0,0,0.1);
 	overflow: auto;
-}
-.add_buddy .roundframe {
-	background: none;
-	border: none;
-	max-width: 100%;
-}
-#activitytime .windowbg2 .flow_hidden {
-	background: none;
-	border: none;
-	box-shadow: none;
 }
 
 div#editlang_desc {
@@ -3791,9 +3827,6 @@ div#editlang_desc {
 }
 #recent .core_posts span {
 	font-weight: normal;
-}
-.core_posts .quickbuttons li:last-child, .core_posts .quickbuttons li:last-child:hover {
-	border-radius: 4px;
 }
 #recent .quickbuttons {
 	margin-top: -2px;
@@ -3813,37 +3846,11 @@ div#editlang_desc {
 	padding: 3px 4px;
 	margin: 0 0 -10px 0;
 }
-#info_center {
-	background: #f8f8f8;
-	margin: 12px 0 0 0;
-	padding: 16px 12px 6px 12px;
-}
-.table_grid tr.catbg th{
-	border-top: 2px solid #ff9400;
-	border-bottom: 2px solid #bf6900;
-	background: #fff;
-	color: #666;
-	border-radius: 2px 2px 0 0;
-	text-align: left;
-}
-.table_grid tr.catbg th.stats {
+.table_grid tr.windowbg2 td.centercol, .table_grid tr.windowbg td.centercol, .table_grid tr.highlight2 td.centercol {
 	text-align: center;
 }
-.table_grid tr.catbg th.centercol, .table_grid tr.windowbg2 td.centercol, .table_grid tr.windowbg td.centercol, .table_grid tr.highlight2 td.centercol {
-	text-align: center;
-}
-.table_grid tr.catbg th {
-	padding: 4px 3px 3px 8px;
-}
-tr.catbg th:first-child {
-	border-left: 1px solid #ddd;
-}
-tr.catbg th:last-child {
-	border-right: 1px solid #ddd;
-}
-.table_grid tr.catbg th a {
-	color: #555;
-	text-shadow: none;
+tr.windowbg, tr.windowbg2 {
+	box-shadow: none;
 }
 #postmodify .roundframe div{
 	padding-right: 0;
@@ -4025,12 +4032,22 @@ div.lastpost p {
 }
 .up_contain {
 	overflow: hidden;
-	background: -webkit-linear-gradient(bottom, #FFFFFF 1%, #F1F3F5 96%);
-	background: linear-gradient(to top, #FFFFFF 1%, #F1F3F5 96%);
 	-moz-box-sizing: border-box; -webkit-box-sizing: border-box; box-sizing: border-box;
 	border: 1px solid #DDD;
 	margin-bottom: 3px;
 	margin-top: -1px;
+	background-image: -webkit-gradient(
+		linear,
+		left top,
+		left bottom,
+		color-stop(0, #FFFFFF),
+		color-stop(0.95, #F1F3F5)
+	);
+	background-image: -o-linear-gradient(bottom, #FFFFFF 0%, #F1F3F5 95%);
+	background-image: -moz-linear-gradient(bottom, #FFFFFF 0%, #F1F3F5 95%);
+	background-image: -webkit-linear-gradient(bottom, #FFFFFF 0%, #F1F3F5 95%);
+	background-image: -ms-linear-gradient(bottom, #FFFFFF 0%, #F1F3F5 95%);
+	background-image: linear-gradient(to bottom, #FFFFFF 0%, #F1F3F5 95%);
 }
 
 /* Child boards */
@@ -4069,6 +4086,7 @@ div.lastpost p {
 	margin: 5px 0 0 0;
 }
 #topic_container .icon, #topic_container .info, #topic_container .windowbg2, #topic_container .windowbg, #topic_container .stats, #topic_container .lastpost {
+	box-shadow: none;
 	border-radius: 0;
 	padding: 0;
 	margin: 0;
@@ -4117,10 +4135,9 @@ div.lastpost p {
 }
 .atwho-view .cur strong {
 	color: white;
-	font:bold;
+	font-weight: bold;
 }
 .atwho-view ul {
-	/* width: 100px; */
 	list-style:none;
 	padding:0;
 	margin:auto;
@@ -4130,7 +4147,6 @@ div.lastpost p {
 	padding: 5px 10px;
 	border-bottom: 1px solid #DDD;
 	cursor: pointer;
-	/* border-top: 1px solid #C8C8C8; */
 }
 .atwho-view small {
 	font-size: smaller;

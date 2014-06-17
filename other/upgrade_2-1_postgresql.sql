@@ -96,6 +96,10 @@ INSERT INTO {$db_prefix}settings (variable, value) VALUES ('topic_move_any', '1'
 INSERT INTO {$db_prefix}settings (variable, value) VALUES ('browser_cache', '?alph21');
 ---#
 
+---# Adding new "enable_ajax_alerts" setting
+INSERT INTO {$db_prefix}settings (variable, value) VALUES ('enable_ajax_alerts', '1');
+---#
+
 ---# Enable BBC on Editor and collapse object
 INSERT INTO {$db_prefix}settings (variable, value) VALUES ('admin_bbc', '1');
 INSERT INTO {$db_prefix}settings (variable, value) VALUES ('additional_options_collapsable', '1');
@@ -1542,6 +1546,11 @@ ADD COLUMN modified_reason varchar(255) NOT NULL default '';
 ---# Dropping the "hide_email" column from the members table
 ALTER TABLE {$db_prefix}members
 DROP hide_email;
+---#
+
+---# Dropping the "email_address" column from log_reported_comments
+ALTER TABLE {$db_prefix}log_reported_comments
+DROP email_address;
 ---#
 
 /******************************************************************************/

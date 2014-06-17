@@ -1061,7 +1061,6 @@ CREATE TABLE {$db_prefix}log_reported_comments (
   id_report int NOT NULL default '0',
   id_member int NOT NULL,
   membername varchar(255) NOT NULL,
-  email_address varchar(255) NOT NULL,
   member_ip varchar(255) NOT NULL,
   comment varchar(255) NOT NULL,
   time_sent int NOT NULL
@@ -1996,6 +1995,7 @@ INSERT INTO {$db_prefix}settings (variable, value) VALUES ('show_modify', '1');
 INSERT INTO {$db_prefix}settings (variable, value) VALUES ('show_user_images', '1');
 INSERT INTO {$db_prefix}settings (variable, value) VALUES ('show_blurb', '1');
 INSERT INTO {$db_prefix}settings (variable, value) VALUES ('show_profile_buttons', '1');
+INSERT INTO {$db_prefix}settings (variable, value) VALUES ('enable_ajax_alerts', '1');
 COMMIT;
 
 # --------------------------------------------------------

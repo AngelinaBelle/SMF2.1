@@ -3595,6 +3595,8 @@ function create_button($name, $alt, $label = '', $custom = '', $force_use = fals
 
 	if (!$settings['use_image_buttons'])
 		return $txt[$alt];
+	elseif (!empty($settings['use_buttons']))
+		return '<img src="' . $settings['images_url'] . '/buttons/' . $name . '" alt="' . $txt[$alt] . '" ' . $custom . '>' . ($label != '' ? '&nbsp;<strong>' . $txt[$label] . '</strong>' : '');
 	else
 		return '<img src="' . $settings['lang_images_url'] . '/' . $name . '" alt="' . $txt[$alt] . '" ' . $custom . '>';
 }
@@ -3696,7 +3698,7 @@ function clean_cache($type = '')
  */
 function setupMenuContext()
 {
-	global $context, $modSettings, $user_info, $txt, $scripturl;
+	global $context, $modSettings, $user_info, $txt, $scripturl, $sourcedir;
 
 	// Set up the menu privileges.
 	$context['allow_search'] = !empty($modSettings['allow_guestAccess']) ? allowedTo('search_posts') : (!$user_info['is_guest'] && allowedTo('search_posts'));
@@ -3732,6 +3734,19 @@ function setupMenuContext()
 		if ($context['allow_pm'])
 			addInlineJavascript('
 	user_menus.add("pm", "' . $scripturl . '?action=pm;sa=popup");', true);
+
+		if (!empty($modSettings['enable_ajax_alerts']))
+		{
+			require_once($sourcedir . '/Subs-Notify.php');
+
+			$timeout = getNotifyPrefs($context['user']['id'], 'alert_timeout');
+			$timeout = empty($timeout) ? 10000 : $timeout[$context['user']['id']]['alert_timeout'] * 1000;
+
+			addInlineJavascript('
+	var new_alert_title = "' . $context['forum_name'] . '";
+	var alert_timeout = ' . $timeout . ';');
+			loadJavascriptFile('alerts.js', array(), 'smf_alerts');
+		}
 	}
 
 	// All the buttons we can possible want and then some, try pulling the final list of buttons from cache first.
@@ -4046,7 +4061,7 @@ function call_integration_hook($hook, $parameters = array())
 		// Did we find a file to load?
 		if (strpos($function, '|') !== false)
 		{
-			list($func, $file) = explode('|', $function);
+			list($file, $func) = explode('|', $function);
 
 			// Match the wildcards to their regular vars.
 			if (empty($settings['theme_dir']))
@@ -4116,7 +4131,7 @@ function add_integration_function($hook, $function, $file = '', $object = false,
 {
 	global $smcFunc, $modSettings;
 
-	$integration_call = (!empty($file) && $file !== true) ? ($function . '|' . $file . ($object ? '#' : '')) : $function;
+	$integration_call = (!empty($file) && $file !== true) ? ($file . '|' . $function . ($object ? '#' : '')) : $function;
 
 	// Is it going to be permanent?
 	if ($permanent)
